@@ -16,7 +16,7 @@ class AuthController extends Controller
 
     public function signup(SignupRequest $request)
     {
-        $data = $request->validated();
+        $data = $request->validated(); 
         /** @var App\Models\User $user */
         $user = User::create([
             'name' => $data['name'],
@@ -36,7 +36,7 @@ class AuthController extends Controller
         {
             return response([
                 'message' => 'E-mail ou Palavra-passe incorreto.'
-            ]);
+            ], 422);
         }
 
         $user = Auth::user();
@@ -48,6 +48,6 @@ class AuthController extends Controller
     {
         $user = $request->user();
         $user->currentAccessToken()->delete();
-        return response(compact('', 204));
+        return response('', 204);
     }
 }
